@@ -1,0 +1,17 @@
+Source: bash-unit
+Section: development
+Priority: optional
+Maintainer: pascal <pascal at grange dot nom dot fr>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.5
+Homepage: https://github.com/pgrange/bash_unit
+#Vcs-Git: git://anonscm.debian.org/collab-maint/bash-unit.git
+#Vcs-Browser: http://anonscm.debian.org/?p=collab-maint/bash-unit.git;a=summary
+
+Package: bash-unit
+Architecture: any
+Depends: bash
+Description: bash unit testing enterprise edition framework for professionals
+ It allows you to write unit tests (functions starting with test),
+ run them and, in case of failure, displays the stack trace with
+ source file and line number indications to locate the problem.
