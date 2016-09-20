@@ -1,3 +1,143 @@
+bash-unit (1.0.1-2) UNRELEASED; urgency=medium
+
+  [ Pascal Grange ]
+  * first commit
+  * ADD run suite with set -e so that test suite fails if a test exit with an error
+  * ADD Display bash stack trace with source files, function names and line numbers
+  * FIX know we run all tests, even in case of failure.
+  * FIX assertFailWithStatus had problem to capture exit status code of assertFail -> encapsulate call to assertFail in a subshell.
+  * FIX unable to catch exit code in assertFailWithStatus when using return $? in assertFail. Just echoing the exit code know
+  * ADD test fail function. FIX local variable in fail function
+  * ADD unit test fail message and stack trace FIX stacktrace line numbers
+  * CHG rename test
+  * ADD test assert_equals
+  * ADD test assertFail
+  * CHG refactor asser_equals test to use assert_fail
+  * ADD test assert
+  * cleaning
+  * ADD assert_status_code and tests
+  * CHG refactor some tests using tests methods
+  * CHG encapsulate code to evaluate in a subshell     so that test runner does not terminate     abruptedly.
+  * CHG move code to make things clearer.
+  * README template ready
+  * IMP documentation
+  * Update README.md
+  * Update README.md
+  * Update README.md
+  * Update README.md
+  * Update README.md
+  * Update README.md
+  * Update README.md
+  * CHG rename sh_test to bash_unit... more enterprise edition     friendly name :/
+  * Update README.md
+  * IMP assert display stderr on test output in case of failure.
+  * CHG do not include bash_unit.sh in your test files anymore,     simply run bash_unit with your test files as parameter.     By the way, bash_unit.sh is renames bash_unit and     sh_test.sh compatibility script is removed.
+  * IMP doc
+  * IMP improve error messages.
+  * CHG refactor to extract a line function that get the     nth line from stdin
+  * Fi
+  * ADD fake function to make life easier when one wants to fake a unix command for her test.
+  * Update README.md
+  * Update README.md
+  * ADD export fake function to sub-shells.
+  * ADD export fake function to sub-shells.
+  * ADD FAKE_PARAMS variable to store parameters received by faked code.
+  * Remove old obsolete comments... I knew it !
+  * Removing useless use of the word "test" in "Running test test_..."
+  * Run all tests, even if some of them fails.
+  * ADD some fancy colors for the kids.
+  * Basic elements to test documentation.
+  * Run each block of code in a separate test and check against its associated output block.
+  * test code is identified by ```bash quote sections and ```test. output is identified by ```output quote sections. This avoid unexpected code coloration.
+  * Improve assert output in case of failure.
+  * Progress in documentation.
+  * Have to fix documentation of fake. But will be OK for know.
+  * ADD fake documentation
+  * ADD prepare final version of documentation.
+  * Finalize documentation.
+  * Remove deprecated code and cosmetic changes.
+  * Minor cosmetic
+  * Improve process separations
+  * re-indent
+  * Improve documentation.
+  * ADD table of content
+  * FIX documentation : setup tried to remove unexisting (the first time) file.
+  * FIX issue #5 and improve usage when incorrect parameters.
+  * ADD getting_started exemple.
+  * Update README.md
+  * FIX do not use svn... that was a bad idea :(
+  * Update README.md
+  * ADD comment to suggest a way to find our code under test.
+  * Rename test to tests since there are several tests in it.
+  * Update README.md
+  * Update README.md
+  * ADD teardown
+
+  [ Luc Mazardo ]
+  * fix bug when test fail (removing temporary files), add correct format for vim output
+  * fix README.md
+
+  [ Pascal Grange ]
+  * FIX Since we added an extra rm in case stderr temporary file is not     removed correctly, we make this rm quiet for all the cases where     the file has already been removed.
+  * FIX #8 : bash_unit should not have failed just because there where no optionnal teardown function defined.
+  * FIX #9 expliciting GNU General Public Licence for bash_unit.
+  * FIX issue in assert: rm was overriding this exit status of fail in some cases.
+  * FIX issue in case of test failure : success was erroneously displayed. Preparing for issue #10
+  * FIX issue #10 : running teardown even in case of test failure.
+  * FIX issue #10 test stop execution after the first failure, if any.
+
+  [ mbeko ]
+  * Add assert_not_equals function
+  * Update documentation with assert_not_equals
+
+  [ Pascal Grange ]
+  * Minor refactorings.
+  * FIX documentation due to new tests for assert_not_equals.
+
+  [ Tim Nichols ]
+  * \e doesnt work in Mac OSX bash, replacing with true escape character
+  * \e doesnt work in Mac OSX bash, replacing with more portable printf + octal representation
+
+  [ Pascal Grange ]
+  * assert_print_stdout_stderr
+  * assert_print_stdout_stderr
+  * assert_print_stdout_stderr
+  * assert_print_stdout_stderr
+  * assert_print_stdout_stderr
+  * assert_print_stdout_stderr
+  * assert_print_stdout_stderr
+  * assert_print_stdout_stderr
+  * assert_print_stdout_stderr
+  * assert_print_stdout_stderr
+  * assert_print_stdout_stderr
+  * assert_print_stdout_stderr
+  * assert_print_stdout_stderr
+  * assert_print_stdout_stderr
+
+  [ Guillaume Vincent ]
+  * add install.sh script
+  * add documentation for install script
+  * change url to official repo for PR
+
+  [ Pascal Grange ]
+  * Add an option to download manually.
+  * FIX link in documentation toc
+  * ADD tool to release bash_unit quickly.
+  * FIX #18: bash_unit changes current working directory to current test file
+
+  [ Fred RUFFET ]
+  * ADD: documentation update (initial manpage and reference to archlinux packaging)
+  * ADD: removing zipped man
+  * ADD: non zipped man page
+  * ADD: non zipped version (for real)
+
+  [ Mark Eissler ]
+  * FIX #22 Correct install.sh to work on MacOS.
+
+  [ pascal ]
+
+ -- Pascal Grange <pascal@grange.nom.fr>  Wed, 21 Sep 2016 00:53:08 +0200
+
 bash-unit (1.0.1-1) unstable; urgency=low
 
   * Including man page
