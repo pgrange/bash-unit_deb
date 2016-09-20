@@ -1,0 +1,3 @@
+ #> git remote add upstream git@github.com:pgrange/bash_unit.git
+ #> git fetch upstream --tags
+ #> git-buildpackage --git-upstream-tag='v%(version)s'
