@@ -1,3 +1,6 @@
  #> git remote add upstream git@github.com:pgrange/bash_unit.git
  #> git fetch upstream --tags
+ #> git merge <tag>
+ #> gbp dch -a
+ #> #fix debian/changelog and commit
  #> git-buildpackage
