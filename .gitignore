@@ -2,4 +2,5 @@ debian/bash-unit.debhelper.log
 debian/bash-unit.substvars
 debian/bash-unit/
 debian/files
-
+*.swp
+token
