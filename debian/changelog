@@ -1,3 +1,9 @@
+bash-unit (1.0.1-1) unstable; urgency=low
+
+  * Including man page
+
+ -- Pascal Grange <pascal@grange.nom.fr>  Wed, 21 Sep 2016 00:07:29 +0200
+
 bash-unit (1.0.0-1) unstable; urgency=low
 
   * Initial release
