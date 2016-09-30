@@ -1,3 +1,13 @@
+bash-unit (1.0.2-3) unstable; urgency=medium
+
+  [ Pascal Grange ]
+  * Improve manpage by specifying that -p is for a test pattern, not a test name.
+
+  [ Romain Castagnet ]
+  * FIX issue #26 bash_unit won't fail if last assertion is ok
+
+ -- Pascal Grange <pascal@grange.nom.fr>  Fri, 30 Sep 2016 08:32:43 +0200
+
 bash-unit (1.0.1-1) unstable; urgency=low
 
   [ Pascal Grange ]
