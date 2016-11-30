@@ -1,3 +1,24 @@
+bash-unit (1.2.0-1) unstable; urgency=medium
+
+  Supporting tap format
+
+  [ n0vember ]
+  * ADD logo and icon in two size each (#30)
+
+  [ Pascal Grange ]
+  * Reafactoring bash_unit so that output is not directly sent to stdout. Preparing for issue #28.
+  * Manage tap format (#28) for succesfull tests only.
+  * Split log output from stacktrace output in bash_unit.
+  * FIX #28 Implement tap output format for bash_unit. bash_unit -f tap
+  * Refactor format code. notify_* functions are defined only once by a function, depending on the chosen output format.
+  * Suppressing dedicated file descriptors for LOG, ERR, OUT and STACK. I can not figure out why I introduced them at first :(
+  * Document -f tap format.
+  * Prettier output with unicode colored characters when in interactive mode.
+
+  [ pascal ]
+
+ -- n0vember <n0vember@half-9.net>  Wed, 30 Nov 2016 19:03:23 +0100
+
 bash-unit (1.0.2-3) unstable; urgency=medium
 
   [ Pascal Grange ]
