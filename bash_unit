@@ -28,12 +28,11 @@ fail() {
   local stdout=$2
   local stderr=$3
 
-  format "$RED" "FAILURE"
-  [[ -z $message  ]] || printf -- "$message\n"
-  [[ ! -z $stdout ]] && [ -s $stdout ] && cat $stdout | sed 's:^:out> :' | format $GREEN
-  [[ ! -z $stderr ]] && [ -s $stderr ] && cat $stderr | sed 's:^:err> :' | format $RED
+  notify_test_failed $__bash_unit_current_test__ "$message"
+  [[ ! -z $stdout ]] && [ -s $stdout ] && cat $stdout | notify_stdout
+  [[ ! -z $stderr ]] && [ -s $stderr ] && cat $stderr | notify_stderr
 
-  print_stack | grep -v ^$BASH_SOURCE | format "$YELLOW"
+  stacktrace | notify_stack
   exit 1
 }
 
@@ -120,6 +119,15 @@ fake() {
   export -f $command
 }
 
+stacktrace() {
+  local i=1
+  while ! [ -z ${BASH_SOURCE[$i]} ]
+  do
+    echo ${BASH_SOURCE[$i]}:${BASH_LINENO[$((i-1))]}:${FUNCNAME[$i]}\(\)
+    i=$(($i + 1))
+  done | grep -v ^$BASH_SOURCE
+}
+
 run_test_suite() {
   local failure=0
   for test in $(set | grep  -E '^test.* ()' | grep -E "$test_pattern" | sed -e 's: .*::')
@@ -127,7 +135,7 @@ run_test_suite() {
     (
       local status=0
       declare -F | grep ' setup$' >/dev/null && setup
-      (run_test $test) || status=$?
+      (__bash_unit_current_test__="$test" run_test) || status=$?
       declare -F | grep ' teardown$' >/dev/null && teardown
       exit $status
     )
@@ -138,21 +146,23 @@ run_test_suite() {
 
 run_test() {
   set -e
-  local TEST=$1
-  echo -n "Running $TEST... " | format "$BLUE"
-  $TEST && format "$GREEN" "SUCCESS"
+  notify_test_starting "$__bash_unit_current_test__"
+  $__bash_unit_current_test__ && notify_test_succeeded "$__bash_unit_current_test__"
 }
 
-print_stack() {
-  local i=1
-  while ! [ -z ${BASH_SOURCE[$i]} ]
-  do
-    echo ${BASH_SOURCE[$i]}:${BASH_LINENO[$((i-1))]}:${FUNCNAME[$i]}\(\)
-    i=$(($i + 1))
-  done
+usage() {
+  echo "$1" >&2
+  echo "$0 [-f <output format<] [-p <pattern1>] [-p <pattern2>]... <test_file1> <test_file2>..." >&2
+  echo >&2
+  echo "Runs tests in test files that match <pattern>s" >&2
+  echo "<output format> is optionnal only supported value is tap" >&2
+  echo "See https://github.com/pgrange/bash_unit" >&2
+  exit 1
 }
 
-format() {
+# Formating
+
+color() {
   local color=$1
   shift
   if [ -t 1 ] ; then echo -en "$color" ; fi
@@ -165,23 +175,103 @@ format() {
   if [ -t 1 ] ; then echo -en "$NOCOLOR" ; fi
 }
 
-usage() {
-  echo "$1" >&2
-  echo "$0 [-p <pattern1>] [-p <pattern2>]... <test_file1> <test_file2>..." >&2
-  echo >&2
-  echo "Runs tests in test files that match patterns" >&2
-  echo "See https://github.com/pgrange/bash_unit" >&2
-  exit 1
+pretty_format() {
+  local color="$1"
+  local pretty_symbol="$2"
+  local alt_symbol="$3"
+  [ -t 1 ] && local term=true || local term=false
+  (
+    cat
+    if $term
+    then
+      echo -en " $pretty_symbol "
+    else
+      [[ ! -z "$alt_symbol" ]] && echo -en " $alt_symbol "
+    fi
+  ) | color "$color"
 }
 
+pretty_success() {
+  pretty_format "$GREEN" "\u2713" "$1"
+}
+
+pretty_failure() {
+  pretty_format "$RED" "\u2717" "$1"
+}
+
+text_format() {
+  notify_suite_starting() {
+    test_file="$1"
+    echo "Running tests in $test_file"
+  }
+  notify_test_starting() {
+    local test="$1"
+    echo -n "Running $test... " | color "$BLUE"
+  }
+  notify_test_succeeded() {
+    echo -n "SUCCESS" | pretty_success
+    echo
+  }
+  notify_test_failed() {
+    local message="$2"
+    echo -n "FAILURE" | pretty_failure
+    echo
+    [[ -z $message  ]] || printf -- "$message\n"
+  }
+  notify_stdout() {
+    sed 's:^:out> :' | color $GREEN
+  }
+  notify_stderr() {
+    sed 's:^:err> :' | color $RED
+  }
+  notify_stack() {
+    color "$YELLOW"
+  }
+}
+
+tap_format() {
+  notify_suite_starting() {
+    test_file="$1"
+    echo "# Running tests in $test_file"
+  }
+  notify_test_starting() {
+    echo -n
+  }
+  notify_test_succeeded() {
+    local test="$1"
+    echo -n "ok" | pretty_success -
+    echo "$test" | color "$BLUE"
+  }
+  notify_test_failed() {
+    local test="$1"
+    local message="$2"
+    echo -n "not ok" | pretty_failure -
+    echo "$test" | color "$BLUE"
+    [[ -z $message  ]] || printf -- "$message\n" | sed -u -e 's/^/# /'
+  }
+  notify_stdout() {
+    sed 's:^:# out> :' | color $GREEN
+  }
+  notify_stderr() {
+    sed 's:^:# err> :' | color $RED
+  }
+  notify_stack() {
+    sed 's:^:# :' | color "$YELLOW"
+  }
+}
+
+output_format=text
 test_pattern=""
 separator=""
-while getopts "p:" option
+while getopts "p:f:" option
 do
   case "$option" in
     p)
       test_pattern="${test_pattern}${separator}${OPTARG}"
       separator="|"
+      ;;
+    f)
+      output_format="${OPTARG}"
       ;;
     ?|:)
       usage
@@ -190,18 +280,29 @@ do
 done
 shift $((OPTIND-1))
 
-#check test files exist and is readable
 for test_file in "$@"
 do
   test -e $test_file || usage "file does not exist: $test_file"
   test -r $test_file || usage "can not read file: $test_file"
 done
 
+case "$output_format" in
+  text)
+    text_format
+    ;;
+  tap)
+    tap_format
+    ;;
+  *)
+    usage "unsupproted output format: $output_format"
+    ;;
+esac
+
 #run tests received as parameters
 failure=0
 for test_file in "$@"
 do
-  echo "Running tests in $test_file"
+  notify_suite_starting "$test_file"
   (
     source "$test_file"
     cd $(dirname "$test_file")
