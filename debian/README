@@ -1,3 +1,5 @@
+First see bash_unit/CONTRIBUTING.md
+
  #> git remote add upstream git@github.com:pgrange/bash_unit.git
  #> git fetch upstream --tags
  #> git merge <tag>
