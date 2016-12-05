@@ -1,4 +1,4 @@
-bash-unit (1.2.0-1) unstable; urgency=medium
+bash-unit (1.2.0-2) unstable; urgency=medium
 
   Supporting tap format
 
@@ -17,7 +17,7 @@ bash-unit (1.2.0-1) unstable; urgency=medium
 
   [ pascal ]
 
- -- n0vember <n0vember@half-9.net>  Wed, 30 Nov 2016 19:03:23 +0100
+ -- Pascal Grange <pascal@grange.nom.fr>  Wed, 30 Nov 2016 19:03:23 +0100
 
 bash-unit (1.0.2-3) unstable; urgency=medium
 
