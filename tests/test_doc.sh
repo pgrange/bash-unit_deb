@@ -2,9 +2,9 @@
 
 TEST_PATTERN='```bash|```test'
 OUTPUT_PATTERN='```output'
-LANG=C
+LANG=C.UTF-8
 
-BASH_UNIT=./bash_unit
+BASH_UNIT="eval FORCE_COLOR=false ./bash_unit"
 
 prepare_tests() {
   mkdir /tmp/$$
@@ -13,7 +13,7 @@ prepare_tests() {
   local swap=/tmp/$$/swap
   local test_output=/tmp/$$/test_output
   local expected_output=/tmp/$$/expected_output
-  cat README.md > $remaining
+  cat README.adoc > $remaining
 
   while grep -E '^'"$TEST_PATTERN"'$' $remaining >/dev/null
   do
@@ -62,5 +62,5 @@ function _next_quote_section() {
   '
 }
 
-cd $(dirname $0)
+cd "$(dirname "$0")"
 prepare_tests

@@ -224,7 +224,7 @@ test_one_test_should_stop_when_assert_fails() {
 }
 
 test_bash_unit_changes_cwd_to_current_test_file_directory() {
-  assert "ls ../tests/$(basename $BASH_SOURCE)" \
+  assert "ls ../tests/$(basename "$BASH_SOURCE")" \
     "bash_unit should change current working directory to match the directory of the currenlty running test"
 }
 
@@ -313,4 +313,4 @@ mute() {
   notify_stderr        () { echo -n ; }
 }
 
-BASH_UNIT=../bash_unit
+BASH_UNIT="eval FORCE_COLOR=false ../bash_unit"
