@@ -1,4 +1,14 @@
-bash-unit (1.3.1-1) UNRELEASED; urgency=medium
+bash-unit (1.4.0-0) unstable; urgency=medium
+
+  [ Pascal Grange ]
+  * Add reference to deb package in documentation
+  * Split test_bash_unit
+  * ADD pending and/or todo keywords
+  * One can now declare todo tests that are not yet implemented
+
+ -- Pascal Grange <pascal@grange.nom.fr>  Thu, 30 Jul 2017 08:30:51 +0200
+
+bash-unit (1.3.1-1) unstable; urgency=medium
 
   [ Pascal Grange ]
   * Using logo in documentation.
@@ -17,8 +27,6 @@ bash-unit (1.3.1-1) UNRELEASED; urgency=medium
   * ADD Readme in asciidoctor format to be man compatible
   * Release includes up to date man page.
   * FIX #39 correct version number in bash_unit -v FIX #19 genereate man pages at release time
-
-  [ pascal ]
 
  -- Pascal Grange <pascal@grange.nom.fr>  Thu, 29 Jun 2017 08:30:51 +0200
 
