@@ -44,17 +44,23 @@ ifndef::backend-manpage[]
 
 == How to install *bash_unit*
 
-This will install *bash_unit* in your current working directory:
+=== installing on Debian/Ubuntu
 
-    bash <(curl -s https://raw.githubusercontent.com/pgrange/bash_unit/master/install.sh)
-
-You can also download it from the https://github.com/pgrange/bash_unit/releases[release page].
+*bash_unit* deb package is available in the https://github.com/pgrange/bash-unit_deb/releases[bash-unit_deb repo].
 
 === installing on Archlinux
 
 *bash_unit* package is available on Archlinux through AUR. In order to install, issue the following command :
 
     yaourt -Sys bash_unit
+
+=== other installation
+
+This will install *bash_unit* in your current working directory:
+
+    bash <(curl -s https://raw.githubusercontent.com/pgrange/bash_unit/master/install.sh)
+
+You can also download it from the https://github.com/pgrange/bash_unit/releases[release page].
 
 endif::[]
 
@@ -181,6 +187,9 @@ You may write a *setup* function that will be exectuted before each test is run.
 You may write a *teardown* function that will be exectuted after each test is run.
 
 If you need to set someting up only once for all tests, simply write your code outside any test function, this is a bash script.
+
+If you want to keep an eye on a test not yet implemented, prefix the name of the function by *todo* instead of test.
+Test to do are not executed and do not impact the global status of your test suite but are displayed in *bash_unit* output.
 
 *bash_unit* changes the current working directory to the one of the running test file. If you need to access files from your test code, for instance the script under test, use path relative to the test file.
 
