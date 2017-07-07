@@ -1,3 +1,11 @@
+bash-unit (1.5.0-0) unstable; urgency=medium
+
+  [ Pascal Grange ]
+  * FIX documentation
+  * Change working directory before loading test file
+
+ -- Pascal Grange <pascal@grange.nom.fr>  Fri, 07 Jul 2017 08:50:43 +0200
+
 bash-unit (1.4.0-0) unstable; urgency=medium
 
   [ Pascal Grange ]
