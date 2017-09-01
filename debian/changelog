@@ -1,3 +1,19 @@
+bash-unit (1.6.0-0) unstable; urgency=medium
+
+  [ Guillaume Vincent ]
+  * Remove warning with find command (#41)
+
+  [ Pascal Grange ]
+  * assert_fails is more consistent than assert_fail
+  * ADD setup_suite and teardown_suite
+  * ADD setup_suite and teardown_suite
+  * Improve release script usage
+  * Add setup_suite and teardown_suite for file level setup/teardown
+
+  [ pascal ]
+
+ -- Pascal Grange <pascal@grange.nom.fr> Fri, 01 Sep 2017 08:36:27 +0200
+
 bash-unit (1.5.0-0) unstable; urgency=medium
 
   [ Pascal Grange ]
