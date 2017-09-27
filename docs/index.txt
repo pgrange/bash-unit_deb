@@ -1,0 +1,2 @@
+curl https://pgrange.github.io/bash-unit_deb/keys.asc | sudo apt-key add -
+echo deb https://pgrange.github.io/bash-unit_deb/debian/ unstable/ | sudo tee -a /etc/apt/sources.list.d/bash-unit.list
