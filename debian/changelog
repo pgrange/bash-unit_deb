@@ -1,3 +1,15 @@
+bash-unit (1.6.1-0) unstable; urgency=medium
+
+  [ g2g ]
+  * FIX documentation (#42)
+
+  [ Pascal Grange ]
+  * Add installation instructions for Debian
+  * FIX do not try to install bash_unit when testing documentation
+  * FIX bash_unit should work with set -u
+
+ -- Pascal Grange <pascal@grange.nom.fr>  Wed, 31 Jan 2018 18:47:02 +0100
+
 bash-unit (1.6.0-0) unstable; urgency=medium
 
   [ Guillaume Vincent ]
