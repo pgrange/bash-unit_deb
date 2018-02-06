@@ -18,3 +18,23 @@ Description: bash unit testing enterprise edition framework for professionals
  source file and line number indications to locate the problem.
 Homepage: https://github.com/pgrange/bash_unit
 
+Package: bash-unit
+Priority: optional
+Section: development
+Installed-Size: 53
+Maintainer: pascal <pascal at grange dot nom dot fr>
+Architecture: amd64
+Version: 1.6.1-0
+Depends: bash
+Filename: unstable/bash-unit_1.6.1-0_amd64.deb
+Size: 11428
+MD5sum: f81ab0ddbb5efceb2f7665aa3524f1a3
+SHA1: 393de47de9d867050db0ed32bd4cc941f206e195
+SHA256: 44e721925237ba3a4443f85ad68d41b98126347668680fbe6591930a2faa71b2
+SHA512: da5332b61fc40ae27381c9b3cb25196c1cafc7e456a9f0ef83dfa2c04e9ee2deb9be3cf13d1968e799c4984f2976dad0b3715da1b5f85a8b3868ea9650198d62
+Description: bash unit testing enterprise edition framework for professionals
+ It allows you to write unit tests (functions starting with test),
+ run them and, in case of failure, displays the stack trace with
+ source file and line number indications to locate the problem.
+Homepage: https://github.com/pgrange/bash_unit
+
