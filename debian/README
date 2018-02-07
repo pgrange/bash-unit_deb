@@ -2,7 +2,10 @@ First see bash_unit/CONTRIBUTING.md
 
  #> git remote add upstream git@github.com:pgrange/bash_unit.git
  #> git fetch upstream --tags
+ #> git checkout debian
  #> git merge <tag>
- #> gbp dch -a
+ #> gbp dch -a --debian-branch=debian
  #> #fix debian/changelog and commit
- #> git-buildpackage
+ #> git-buildpackage --git-debian-branch=debian
+ #> git checkout master
+ #> cd debian ; make
