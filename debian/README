@@ -8,4 +8,6 @@ First see bash_unit/CONTRIBUTING.md
  #> #fix debian/changelog and commit
  #> git-buildpackage --git-debian-branch=debian
  #> git checkout master
- #> cd debian ; make
+ #> cd debian
+ #> # upgrade version in Makefile and Makefile_debrepo
+ #> make
