@@ -1,4 +1,4 @@
-version=1.6.1-0
+version=1.6.1-1
 
 target=../docs/debian
 release=unstable
