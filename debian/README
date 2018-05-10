@@ -6,7 +6,7 @@ First see bash_unit/CONTRIBUTING.md
  #> git merge <tag>
  #> gbp dch -a --debian-branch=debian
  #> #fix debian/changelog and commit
- #> git-buildpackage --git-debian-branch=debian
+ #> gbp buildpackage --git-debian-branch=debian
  #> git checkout master
  #> cd debian
  #> # upgrade version in Makefile and Makefile_debrepo
