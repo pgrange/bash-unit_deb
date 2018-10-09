@@ -1,12 +1,12 @@
-Date: Thu, 10 May 2018 17:17:03 +0000
+Date: Tue, 09 Oct 2018 06:46:16 +0000
 Label: bash-unit
 Origin: bash-unit
 Suite: unstable
 MD5Sum:
- 3e627f26772f3929de2fefc181ea94ba             1722 Packages
+ 6deef769c0e13cf09cd84326fb9abc87              861 Packages
 SHA1:
- f2cea3d33b32f804821477c8132969d2d350fadd             1722 Packages
+ 38d88f114eb870e71f0391280355117490a7a1c9              861 Packages
 SHA256:
- a249908e2f511cd4ed55dfe775d0dc48274f1b33a520a7c7a23ab04b9ef226b4             1722 Packages
+ bde48c007ce51f93f2cc7a3febe8aad680736f79dd36fde2025a0773d1c02911              861 Packages
 SHA512:
- 50c88c9f454f04af825d94f750c286d401d8b6fc5375843bf4c3953daa9af6dfefc8062940ab5168da49443fc917049ca7c6c3b25e4bab555356037f9a0e0baf             1722 Packages
+ 10e4e02b75000912e413838a4afe7e0032329bc0c2e03e81347cfc2c54a3d4969f7bbd8fc1f6a67d064ff13219a160bd4dc3057dba67f980cfac7212f0a5d95f              861 Packages
